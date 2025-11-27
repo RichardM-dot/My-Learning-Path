@@ -13,6 +13,8 @@ jobs:
     - name: 安装GCC编译器
       run: sudo apt-get update && sudo apt-get install -y gcc
     - name: 编译C程序
-      run: gcc -o student_management "The C Programming Language/学生成绩管理系统.c"
+      run: |
+        cd "The C Programming Language"
+        gcc -o student_management "学生成绩管理系统.c"
     - name: 检查文件是否存在
-      run: ls -la student_management
+      run: ls -la "The C Programming Language/student_management"
