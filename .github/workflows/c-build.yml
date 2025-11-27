@@ -17,4 +17,6 @@ jobs:
         cd "The C Programming Language"
         gcc -o student_management "学生成绩管理系统.c"
     - name: 检查文件是否存在
-      run: ls -la "The C Programming Language/student_management"
+      run: |
+        cd "The C Programming Language"
+        ls -la student_management
