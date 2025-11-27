@@ -1,99 +1,99 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdbool.h>
-#define read_perm 0x01//00000001-è¯»æƒé™
-#define write_perm 0x02//000000010-å†™æƒé™
-#define exec_prem 0x04//00000100-æ‰§è¡Œæƒé™
-#define delete_prem 0x08//00001000-åˆ é™¤æƒé™
+#define read_perm 0x01//00000001-¶ÁÈ¨ÏŞ
+#define write_perm 0x02//000000010-Ğ´È¨ÏŞ
+#define exec_prem 0x04//00000100-Ö´ĞĞÈ¨ÏŞ
+#define delete_prem 0x08//00001000-É¾³ıÈ¨ÏŞ
 void comprehensivebitwisedemo(char testchar,char key)
 {
-	printf("===ä½è¿ç®—===\n");
-	printf("æµ‹è¯•å­—ç¬¦:'%c'(ascll:%d)\n",testchar,testchar);
-	printf("åŠ å¯†å¯†é’¥:0x%02X\n\n",(unsigned char)key);
-	//1.å…ˆåˆ†æå­—ç¬¦äºŒè¿›åˆ¶
-	printf("1.å­—ç¬¦äºŒè¿›åˆ¶åˆ†æ:\n");
-	printf("äºŒè¿›åˆ¶:");
+	printf("===Î»ÔËËã===\n");
+	printf("²âÊÔ×Ö·û:'%c'(ascll:%d)\n",testchar,testchar);
+	printf("¼ÓÃÜÃÜÔ¿:0x%02X\n\n",(unsigned char)key);
+	//1.ÏÈ·ÖÎö×Ö·û¶ş½øÖÆ
+	printf("1.×Ö·û¶ş½øÖÆ·ÖÎö:\n");
+	printf("¶ş½øÖÆ:");
 	for(int i=7;i>0;i--)
 	{
 		printf("%d",(testchar>>i)&0x01);
-		if(i==4) printf(" ");//æ¯å››ä½åŠ ä¸€ä¸ªç©ºæ ¼ä¾¿äºè§‚å¯Ÿ
+		if(i==4) printf(" ");//Ã¿ËÄÎ»¼ÓÒ»¸ö¿Õ¸ñ±ãÓÚ¹Û²ì
 	}
-	printf("\n é«˜å››ä½0x%X,ä½4ä½:0x%X\n\n",(testchar>>4)&0x0F,testchar&0x0F);
-	//2.å¤§å°å†™è½¬æ¢æ¼”ç¤º
-	printf("2.å¤§å°å†™è½¬æ¢:\n");
-	printf("è½¬å°å†™:'%c'->'%c'\n",testchar,testchar|0x20);
-	printf("è½¬å¤§å†™:'%c'->'%c'\n\n",testchar,testchar&(~0x20));
-	printf("å¤§å°å†™è½¬æ¢:'%c'->'%c'->'%c'\n\n",testchar,testchar^0x20);
-	//3.å­—ç¬¦å±æ€§åˆ¤æ–­
+	printf("\n ¸ßËÄÎ»0x%X,µÍ4Î»:0x%X\n\n",(testchar>>4)&0x0F,testchar&0x0F);
+	//2.´óĞ¡Ğ´×ª»»ÑİÊ¾
+	printf("2.´óĞ¡Ğ´×ª»»:\n");
+	printf("×ªĞ¡Ğ´:'%c'->'%c'\n",testchar,testchar|0x20);
+	printf("×ª´óĞ´:'%c'->'%c'\n\n",testchar,testchar&(~0x20));
+	printf("´óĞ¡Ğ´×ª»»:'%c'->'%c'->'%c'\n\n",testchar,testchar^0x20);
+	//3.×Ö·ûÊôĞÔÅĞ¶Ï
 	unsigned char uc=(unsigned char)testchar;
-	bool isalpha=((uc|0x20)-'a'<25);//å­—æ¯åˆ¤æ–­
-	printf("æ˜¯å¦æ˜¯å­—æ¯: %s\n", isalpha ? "æ˜¯" : "å¦");
-	bool isupper=((uc&0x20)==0&&(uc>='A'&&uc<='z'));//å¤§å†™å­—æ¯åˆ¤æ–­
-	printf("æ˜¯å¦æ˜¯å¤§å†™å­—æ¯:%s\n",isupper?"æ˜¯":"å¦");
-	bool islower=((uc&0x20)!=0&&(uc>'a'&&uc<='z'));//å°å†™å­—æ¯åˆ¤æ–­
-	printf("æ˜¯å¦æ˜¯å°å†™å­—æ¯:%s\n\n",islower?"æ˜¯":"å¦");
-	bool isdigit=(uc>='0'&&uc<='9');//æ•°å­—åˆ¤æ–­
-	printf("æ˜¯å¦ä¸ºæ•°å­—:%s\n\n",isdigit?"æ˜¯":"å¦");
-    bool needsencoding=(uc<0x20||uc>0x7E);//URLç¼–ç æ£€æµ‹
-	printf("æ˜¯å¦éœ€è¦URLç¼–ç :%s\n\n",needsencoding?"æ˜¯":"å¦");
-	//4.åŠ å¯†è§£å¯†æ¼”ç¤º
-	printf("4.åŠ å¯†è§£å¯†æ¼”ç¤º:\n");
+	bool isalpha=((uc|0x20)-'a'<25);//×ÖÄ¸ÅĞ¶Ï
+	printf("ÊÇ·ñÊÇ×ÖÄ¸: %s\n", isalpha ? "ÊÇ" : "·ñ");
+	bool isupper=((uc&0x20)==0&&(uc>='A'&&uc<='z'));//´óĞ´×ÖÄ¸ÅĞ¶Ï
+	printf("ÊÇ·ñÊÇ´óĞ´×ÖÄ¸:%s\n",isupper?"ÊÇ":"·ñ");
+	bool islower=((uc&0x20)!=0&&(uc>'a'&&uc<='z'));//Ğ¡Ğ´×ÖÄ¸ÅĞ¶Ï
+	printf("ÊÇ·ñÊÇĞ¡Ğ´×ÖÄ¸:%s\n\n",islower?"ÊÇ":"·ñ");
+	bool isdigit=(uc>='0'&&uc<='9');//Êı×ÖÅĞ¶Ï
+	printf("ÊÇ·ñÎªÊı×Ö:%s\n\n",isdigit?"ÊÇ":"·ñ");
+    bool needsencoding=(uc<0x20||uc>0x7E);//URL±àÂë¼ì²â
+	printf("ÊÇ·ñĞèÒªURL±àÂë:%s\n\n",needsencoding?"ÊÇ":"·ñ");
+	//4.¼ÓÃÜ½âÃÜÑİÊ¾
+	printf("4.¼ÓÃÜ½âÃÜÑİÊ¾:\n");
 	char encrypted=testchar^key;
 	char decrypted=encrypted^key;
-	printf("åŸå­—ç¬¦:'%c'(0x%02X)\n",testchar,(unsigned char)testchar);
-	printf("åŠ å¯†å:'%c'(0x%02X)\n",encrypted,(unsigned char)encrypted);
-	printf("è§£å¯†å:'%c'(0x%02X)\n\n",decrypted,(unsigned char)decrypted);
-	//5.æƒé™ç®¡ç†ç³»ç»Ÿæ¼”ç¤º
-	printf("5.æƒé™ç®¡ç†ç³»ç»Ÿæ¼”ç¤º:\n");
-    char userpermissions=0x00;//åˆå§‹æ— æƒé™
-    //è®¾ç½®æƒé™
-	userpermissions |= read_perm | write_perm;//è®¾ç½®è¯»å†™æƒé™
-    printf("   è®¾ç½®è¯»ã€å†™æƒé™: 0x%02X\n", (unsigned char)userpermissions);
-	//æ£€æŸ¥æƒé™
-    printf("æœ‰è¯»æƒé™:%s\n",(userpermissions&read_perm)?"æ˜¯":"å¦");
-	printf("æœ‰å†™æƒé™:%s\n",(userpermissions&write_perm)?"æ˜¯":"å¦");
-    //æ·»åŠ æ‰§è¡Œæƒé™
+	printf("Ô­×Ö·û:'%c'(0x%02X)\n",testchar,(unsigned char)testchar);
+	printf("¼ÓÃÜºó:'%c'(0x%02X)\n",encrypted,(unsigned char)encrypted);
+	printf("½âÃÜºó:'%c'(0x%02X)\n\n",decrypted,(unsigned char)decrypted);
+	//5.È¨ÏŞ¹ÜÀíÏµÍ³ÑİÊ¾
+	printf("5.È¨ÏŞ¹ÜÀíÏµÍ³ÑİÊ¾:\n");
+    char userpermissions=0x00;//³õÊ¼ÎŞÈ¨ÏŞ
+    //ÉèÖÃÈ¨ÏŞ
+	userpermissions |= read_perm | write_perm;//ÉèÖÃ¶ÁĞ´È¨ÏŞ
+    printf("   ÉèÖÃ¶Á¡¢Ğ´È¨ÏŞ: 0x%02X\n", (unsigned char)userpermissions);
+	//¼ì²éÈ¨ÏŞ
+    printf("ÓĞ¶ÁÈ¨ÏŞ:%s\n",(userpermissions&read_perm)?"ÊÇ":"·ñ");
+	printf("ÓĞĞ´È¨ÏŞ:%s\n",(userpermissions&write_perm)?"ÊÇ":"·ñ");
+    //Ìí¼ÓÖ´ĞĞÈ¨ÏŞ
 	userpermissions|=exec_prem;
-	printf("æ·»åŠ æ‰§è¡Œæƒé™å:0x%02X\n",(unsigned char)userpermissions);
-	//ç§»é™¤å†™æƒé™
+	printf("Ìí¼ÓÖ´ĞĞÈ¨ÏŞºó:0x%02X\n",(unsigned char)userpermissions);
+	//ÒÆ³ıĞ´È¨ÏŞ
 	userpermissions&=~write_perm;
-	printf("ç§»é™¤å†™æƒé™å:0x%02X\n",(unsigned char)userpermissions);
-	printf("æœ‰å†™æƒé™:%s\n",(userpermissions&write_perm)?"æ˜¯":"å¦");
-	//6.ä½æ“ä½œæŠ€å·§æ¼”ç¤º
+	printf("ÒÆ³ıĞ´È¨ÏŞºó:0x%02X\n",(unsigned char)userpermissions);
+	printf("ÓĞĞ´È¨ÏŞ:%s\n",(userpermissions&write_perm)?"ÊÇ":"·ñ");
+	//6.Î»²Ù×÷¼¼ÇÉÑİÊ¾
 	int number=42;
-	printf("\n6.ä½æ“ä½œæŠ€å·§æ¼”ç¤º:\n");
-	printf("åŸå§‹æ•°å­—:%d\n",number);
-	printf("æ•°å­—%dçš„å¥‡å¶åˆ¤æ–­:\n",number);
-	printf("ä¼ ç»Ÿæ–¹æ³•:%s\n",(number%2==0)?"å¶æ•°":"å¥‡æ•°");
-	printf("ä½æ“ä½œæ–¹æ³•:%s\n",(number&0x01)?"å¥‡æ•°":"å¶æ•°");
-	//å¿«é€Ÿä¹˜é™¤äºŒçš„å¹‚
-	printf("æ•°å­—%dä¹˜ä»¥8:%d\n",number,number<<3,number);
-	printf("æ•°å­—%dé™¤ä»¥8:%d\n",number,number>>3,number);
-	//7.ä½¿ç”¨ä½è¿ç®—å‡½æ•°
-	printf("7.å®ç”¨ä½è¿ç®—å‡½æ•°");
-	//ç»Ÿè®¡1çš„ä¸ªæ•°
+	printf("\n6.Î»²Ù×÷¼¼ÇÉÑİÊ¾:\n");
+	printf("Ô­Ê¼Êı×Ö:%d\n",number);
+	printf("Êı×Ö%dµÄÆæÅ¼ÅĞ¶Ï:\n",number);
+	printf("´«Í³·½·¨:%s\n",(number%2==0)?"Å¼Êı":"ÆæÊı");
+	printf("Î»²Ù×÷·½·¨:%s\n",(number&0x01)?"ÆæÊı":"Å¼Êı");
+	//¿ìËÙ³Ë³ı¶şµÄÃİ
+	printf("Êı×Ö%d³ËÒÔ8:%d\n",number,number<<3,number);
+	printf("Êı×Ö%d³ıÒÔ8:%d\n",number,number>>3,number);
+	//7.Ê¹ÓÃÎ»ÔËËãº¯Êı
+	printf("7.ÊµÓÃÎ»ÔËËãº¯Êı");
+	//Í³¼Æ1µÄ¸öÊı
 	int count=0;
 	unsigned char temp=(unsigned char)testchar;
 	while(temp)
 	{
 		count++;
-		temp&=(temp-1);//æ¸…é™¤æœ€ä½ä½1
+		temp&=(temp-1);//Çå³ı×îµÍÎ»1
 	}
-	printf("å­—ç¬¦ä¸­1çš„ä¸ªæ•°:%d\n",count);
-	//åˆ¤æ–­æ˜¯å¦ä¸º2çš„å¹‚
+	printf("×Ö·ûÖĞ1µÄ¸öÊı:%d\n",count);
+	//ÅĞ¶ÏÊÇ·ñÎª2µÄÃİ
 	bool ispoweroftwo=(number>0)&&((number&(number-1)==0));
-	printf("æ•°å­—æ˜¯å¦ä¸º2çš„å¹‚:%s\n",ispoweroftwo?"æ˜¯":"å¦");
-	//æå–æœ€ä½ä½çš„1
+	printf("Êı×ÖÊÇ·ñÎª2µÄÃİ:%s\n",ispoweroftwo?"ÊÇ":"·ñ");
+	//ÌáÈ¡×îµÍÎ»µÄ1
 	int lowestbit=number&(-number);
-	printf("%dçš„æœ€ä½æœ‰æ•ˆä½:%d\n\n",number,lowestbit);
+	printf("%dµÄ×îµÍÓĞĞ§Î»:%d\n\n",number,lowestbit);
 }
 void performancecomparison()
 {
-	printf("===æ€§èƒ½æ¯”è¾ƒ===\n");
+	printf("===ĞÔÄÜ±È½Ï===\n");
 	int testnum=123456789;
-	int iterations=100000000;//1äº¿æ¬¡è¿­ä»£
+	int iterations=100000000;//1ÒÚ´Îµü´ú
 	clock_t start,end;
-	//ä¼ ç»Ÿæ–¹æ³•
+	//´«Í³·½·¨
 	start=clock();
 	int traditionalresult=0;
 	for(int i=0;i<iterations;i++)
@@ -101,8 +101,8 @@ void performancecomparison()
 		traditionalresult+=(testnum+i)%2;
 	}
 	end=clock();
-	double traditionaltime=(double)(end-start)/CLOCKS_PER_SEC;//æ ‡å‡†åº“å¸¸é‡
-	//ä½è¿ç®—æ–¹æ³•
+	double traditionaltime=(double)(end-start)/CLOCKS_PER_SEC;//±ê×¼¿â³£Á¿
+	//Î»ÔËËã·½·¨
 	start=clock();
 	int bitwiseresult=0;
 	for(int i=0;i<iterations;i++)
@@ -111,35 +111,35 @@ void performancecomparison()
 	}
 	end=clock();
 	double bitwisetime=(double)(end-start)/CLOCKS_PER_SEC;
-	printf("ä¼ ç»Ÿæ–¹æ³•(å–æ¨¡):%.4fç§’\n",traditionaltime);
-	printf("ä½è¿ç®—(ä¸æ“ä½œ):%.4fç§’\n",bitwisetime);
+	printf("´«Í³·½·¨(È¡Ä£):%.4fÃë\n",traditionaltime);
+	printf("Î»ÔËËã(Óë²Ù×÷):%.4fÃë\n",bitwisetime);
 }
 void interativetest()
 {
-    printf("===äº¤äº’å¼æµ‹è¯•===\n");
-	printf("è¯·è¾“å…¥ä¸€ä¸ªå­—ç¬¦:");
+    printf("===½»»¥Ê½²âÊÔ===\n");
+	printf("ÇëÊäÈëÒ»¸ö×Ö·û:");
 	char inputchar=getchar();
-	//æ¸…ç©ºè¾“å…¥ç¼“å†²åŒº
+	//Çå¿ÕÊäÈë»º³åÇø
 	while(getchar()!='\n');
-	printf("è¯·è¾“å…¥å¯†é’¥(0-255)");
+	printf("ÇëÊäÈëÃÜÔ¿(0-255)");
 	int keyinput;
 	scanf("%d",&keyinput);
 	comprehensivebitwisedemo(inputchar,(char)keyinput); 
 }
 int main()
 {
-	// åŸºç¡€æ¼”ç¤º
+	// »ù´¡ÑİÊ¾
     comprehensivebitwisedemo('A', 0x55);
     comprehensivebitwisedemo('z', 0xAA);
     comprehensivebitwisedemo('9', 0x33);
-    // æ€§èƒ½å¯¹æ¯”
+    // ĞÔÄÜ¶Ô±È
     performancecomparison();
-    // äº¤äº’å¼æµ‹è¯•ï¼ˆå–æ¶ˆæ³¨é‡Šå³å¯ä½¿ç”¨ï¼‰
+    // ½»»¥Ê½²âÊÔ£¨È¡Ïû×¢ÊÍ¼´¿ÉÊ¹ÓÃ£©
     // interactiveTest();
-    printf("=== ä½è¿ç®—ä¼˜åŠ¿æ€»ç»“ ===\n");
-    printf("1. æè‡´æ€§èƒ½ - CPUåŸç”ŸæŒ‡ä»¤çº§æ”¯æŒ\n");
-    printf("2. å†…å­˜é«˜æ•ˆ - ç›´æ¥æ“ä½œï¼Œæ— ä¸´æ—¶å˜é‡\n"); 
-    printf("3. ä»£ç ç®€æ´ - ä¸€è¡Œå®Œæˆå¤æ‚é€»è¾‘\n");
-    printf("4. ç¡¬ä»¶æ§åˆ¶ - åµŒå…¥å¼ç³»ç»Ÿå¿…å¤‡æŠ€èƒ½\n");
+    printf("=== Î»ÔËËãÓÅÊÆ×Ü½á ===\n");
+    printf("1. ¼«ÖÂĞÔÄÜ - CPUÔ­ÉúÖ¸Áî¼¶Ö§³Ö\n");
+    printf("2. ÄÚ´æ¸ßĞ§ - Ö±½Ó²Ù×÷£¬ÎŞÁÙÊ±±äÁ¿\n"); 
+    printf("3. ´úÂë¼ò½à - Ò»ĞĞÍê³É¸´ÔÓÂß¼­\n");
+    printf("4. Ó²¼ş¿ØÖÆ - Ç¶ÈëÊ½ÏµÍ³±Ø±¸¼¼ÄÜ\n");
     return 0;
 }
